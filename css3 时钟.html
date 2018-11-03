@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css3 时钟</title>
+    <style>
+        .clock {
+            height: 200px;
+            width: 200px;
+            margin:100px auto;
+            border: 10px solid grey;
+            border-radius: 50%;
+            position: relative;
+        }
+        .line {
+            height: 20px;
+            width: 10px;
+            background-color: grey;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%,0%);
+            transform-origin: 5px 100px ;
+        }
+        .line2 {
+            transform: translate(-50%,0%) rotate(30deg);
+        }
+        .line3 {
+            transform: translate(-50%,0%) rotate(60deg);
+        }
+        .line4 {
+            transform: translate(-50%,0%) rotate(90deg);
+        }
+        .line5 {
+            transform: translate(-50%,0%) rotate(120deg);
+        }
+        .line6 {
+            transform: translate(-50%,0%) rotate(150deg);
+        }
+        .line7 {
+            transform: translate(-50%,0%)  rotate(180deg);
+        }
+        .line8 {
+            transform: translate(-50%,0%) rotate(210deg);
+        }
+        .line9 {
+             transform: translate(-50%,0%) rotate(240deg);
+         }
+        .line10 {
+              transform: translate(-50%,0%) rotate(270deg);
+          }
+        .line11 {
+            transform: translate(-50%,0%) rotate(300deg);
+        }
+        .line12 {
+            transform: translate(-50%,0%) rotate(330deg);
+        }
+        .circle {
+            height: 20px;
+            width: 20px;
+            position: absolute;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            background-color: grey;
+            border-radius: 50%;
+        }
+        .hour {
+            width: 10px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: center bottom;
+            transform: translate(-50%,-100%);
+            animation: clockMove 216000s linear infinite;
+        }
+        .minute {
+            width: 8px;
+            height: 60px;
+            background-color: blue;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: center bottom;
+            transform: translate(-50%,-100%);
+            animation: clockMove 3600s linear infinite;
+        }
+        .second {
+            width: 5px;
+            height: 70px;
+            background-color: yellow;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: center bottom;
+            transform: translate(-50%,-100%);
+            animation: clockMove 60s linear infinite;
+        }
+
+        @keyframes clockMove {
+           from  {
+               transform:translate(-50%,-100%) rotate(0deg) ;
+           }
+            to {
+                transform:translate(-50%,-100%) rotate(360deg) ;
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="clock">
+    <div class="line line1"></div>
+    <div class="line line2"></div>
+    <div class="line line3"></div>
+    <div class="line line4"></div>
+    <div class="line line5"></div>
+    <div class="line line6"></div>
+    <div class="line line7"></div>
+    <div class="line line8"></div>
+    <div class="line line9"></div>
+    <div class="line line10"></div>
+    <div class="line line11"></div>
+    <div class="line line12"></div>
+    <div class="hour"></div>
+    <div class="minute"></div>
+    <div class="second"></div>
+    <div class="circle"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>切割轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .contain {
+            width: 560px;
+            height: 300px;
+            margin: 200px auto;
+            position: relative;
+        }
+        ul {
+           height: 100%;
+            transform-style: preserve-3d;
+            /*transform: rotate3d(1,1,0,30deg);*/
+        }
+        ul>li {
+            width: 20%;
+            height: 100%;
+            float: left;
+            list-style: none;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        ul>li>span {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+        ul>li span:nth-child(1) {
+            transform: translateZ(150px);
+            background: url("images/q1.jpg");
+        }
+        ul>li span:nth-child(2) {
+            transform: translateZ(-150px) rotateX(180deg);
+            background: url("images/q3.jpg");
+        }
+        ul>li span:nth-child(3) {
+            transform: translateY(150px) rotateX(-90deg);
+            background: url("images/q2.jpg")0;
+        }
+        ul>li span:nth-child(4) {
+            transform: translateY(-150px) rotateX(90deg);
+            background: url("images/q4.jpg");
+        }
+        ul li:nth-child(2) span {
+            background-position: -100% 0;
+        }
+        ul li:nth-child(3) span {
+            background-position: -200% 0;
+        }
+        ul li:nth-child(4) span {
+            background-position: -300% 0;
+        }
+        ul li:nth-child(5) span {
+            background-position: -400% 0;
+        }
+        .left,
+        .right {
+            height: 50px;
+            width: 50px;
+            background: rgba(0,0,0,.2);
+            position: absolute;
+            top: 50%;
+            transform: translate(0%,-50%);
+            font-size: 30px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .left {
+            left: 0px;
+            cursor: pointer;
+        }
+        .right {
+            right: 0px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="contain">
+    <ul>
+        <li>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </li>
+        <li>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </li>
+        <li>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </li>
+        <li>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </li>
+        <li>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </li>
+    </ul>
+
+    <div class="left">&lt;</div>
+    <div class="right">&gt;</div>
+</div>
+
+<script src="vendors/jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        //获取左右按钮
+        var $left=$('.left');
+        var $right=$('.right');
+        var count=0;
+        //节流阀
+        var flag=true;
+        //给做按钮注册事件
+        $left.on('click',function(){
+         if(flag){
+             flag=false;
+             count--;
+             $('li').each(function(index){
+                 $(this).css({
+                     'transform':'rotateX('+count*90+'deg)',
+                     'transition':'transform 0.5s linear '+index*0.1+'s'
+                 });
+             });
+            setTimeout(function(){
+                 flag=true;
+             },1000);
+         }
+        });
+
+        $right.on('click',function(){
+            if(flag){
+                flag=false;
+                count++;
+                $('li').each(function(index){
+                    $(this).css({
+                        'transform':'rotateX('+count*90+'deg)',
+                        'transition':'transform 0.5s linear '+index*0.1+'s'
+                    });
+                });
+                setTimeout(function(){
+                    flag=true;
+                },1000);
+            }
+        });
+    });
+</script>
+</body>
+</html>
