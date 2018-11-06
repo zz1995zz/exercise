@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>方向键控制行走小人</title>
+    <style>
+        canvas {
+            border:1px solid gray;
+        }
+    </style>
+</head>
+<body>
+<canvas width="600" height="400"></canvas>
+
+<script>
+    function Person(ctx){
+        this.ctx=ctx||document.querySelector('canvas').getContext('2d');
+        this.src='images/04.png';
+//        移动步长
+        this.stepSize=10;
+//        移动方向  0=>前 3=>后 1=>左 2=>右
+        this.direction=0;
+//        移动步数
+        this.stepX=0;
+        this.stepY=0;
+
+        this.init();
+    }
+
+//    行为
+    Person.prototype.init=function (){
+        var that=this;
+      this.loadImage(function(image){
+
+//          画布大小
+          that.canvasWidth=that.ctx.canvas.width;
+          that.canvasHeight=that.ctx.canvas.height;
+//          图片大小
+          that.imageWidth=image.width;
+          that.imageHeight=image.height;
+//          小图大小
+          that.width=that.imageWidth/4;
+          that.height=that.imageHeight/4;
+//          图片起始点
+          that.x0=that.canvasWidth/2-that.width/2;
+          that.y0=that.canvasHeight/2-that.height/2;
+
+//          图片初始
+          that.ctx.drawImage(image,0,0,that.width,that.height,that.x0,that.y0,that.width,that.height);
+
+          //          移动
+          that.index=0;
+          document.onkeydown=function(e){
+              if(e.keyCode==40){
+//                  前
+                  that.stepY++;
+                  that.direction=0;
+                  that.drawImage(image);
+              }else if(e.keyCode==37){
+//                  左
+                  that.stepX--;
+                  that.direction=1;
+                  that.drawImage(image);
+              }else if(e.keyCode==39){
+//                  右
+                  that.stepX++;
+                  that.direction=2;
+                  that.drawImage(image);
+              }else if(e.keyCode==38){
+//                  后
+                  that.stepY--;
+                  that.direction=3;
+                  that.drawImage(image);
+              }
+          };
+      });
+
+    };
+
+//    加载图片
+    Person.prototype.loadImage=function (callback){
+
+         var image=new Image();
+        image.onload=function (){
+            callback&&callback(image);
+        };
+        image.src=this.src;
+    };
+
+
+//    控制图片方向
+     Person.prototype.drawImage=function (image){
+         this.index++;
+//         清除画布
+         this.ctx.clearRect(0,0,this.canvasWidth,this.canvasHeight);
+         this.ctx.drawImage(image,
+                 this.index*this.width,this.direction*this.height,
+                 this.width,this.height,
+                 this.x0+this.stepX*this.stepSize,this.y0+this.stepY*this.stepSize,
+                 this.width,this.height
+         );
+//         超出索引
+         if(this.index>=3){
+             this.index=0;
+         }
+     };
+
+
+    new Person();
+</script>
+</body>
+</html>
