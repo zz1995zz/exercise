@@ -1,7 +1,3 @@
-/**
- * Created by zhousg on 2017/10/12.
- */
-
 window.onload = function () {
 //    首页搜索效果
     search();
