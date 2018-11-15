@@ -1,0 +1,19 @@
+.sn_nav {
+  width: 100%;
+}
+.sn_nav ul {
+  list-style: none;
+  width: 100%;
+}
+.sn_nav ul li {
+  width: 20%;
+  float: left;
+}
+.sn_nav ul li a {
+  display: block;
+  width: 100%;
+}
+.sn_nav ul li a img {
+  display: block;
+  width: 100%;
+}

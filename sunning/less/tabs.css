@@ -1,0 +1,17 @@
+.sn_tabs {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #ccc;
+}
+.sn_tabs ul {
+  list-style: none;
+}
+.sn_tabs ul li {
+  float: left;
+}
+.sn_tabs ul li a {
+  display: block;
+  width: 100%;
+}
